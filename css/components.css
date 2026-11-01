@@ -1,217 +1,63 @@
-.btn {
-  display: inline-block;
-  background: var(--accent);
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 30px;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.btn:hover {
-  background: var(--accent-dark);
-  transform: translateY(-2px);
-}
-
-.tabs {
+.cart-item {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.tab {
-  padding: 0.6rem 1.2rem;
-  border-radius: 20px;
-  border: 2px solid var(--primary);
-  background: transparent;
-  color: var(--primary);
-  cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.tab.active,
-.tab:hover {
-  background: var(--primary);
-  color: #fff;
-}
-
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.card {
-  background: #fff;
-  border-radius: 15px;
-  padding: 1rem;
-  box-shadow: 0 4px 15px var(--shadow);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
-}
-
-.card img {
-  display: block;
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.card h3 {
-  margin: 1rem 0 0.5rem;
-  color: var(--primary);
-}
-
-.price {
-  color: var(--accent);
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-}
-
-.order-btn {
-  background: var(--primary);
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.order-btn:hover {
-  background: var(--primary-dark);
-}
-
-.cart {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: var(--primary);
-  color: #fff;
-  padding: 0.8rem 1.2rem;
-  border-radius: 30px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  text-decoration: none;
-  z-index: 900;
-  transition: background 0.3s ease;
-}
-
-.cart:hover {
-  background: var(--primary-dark);
-}
-
-#cartItems {
-  margin: 2rem 0;
-}
-
-#cartItems p {
+  max-width: 620px;
   margin: 0.8rem auto;
-  max-width: 500px;
   padding: 1rem;
   background: #fff;
-  border-radius: var(--radius-sm);
+  border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-.total {
-  font-size: 1.3rem;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-}
-
-form {
-  width: 100%;
-  max-width: 400px;
-  margin: auto;
+.cart-item-meta {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  min-width: 120px;
 }
 
-form input,
-form textarea,
-form button {
-  margin: 10px 0;
-  padding: 0.9rem;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+.cart-item-meta small {
+  color: #666;
+  font-size: 0.8rem;
 }
 
-form input,
-form textarea {
-  background: #fff;
-  color: var(--text);
+.qty-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #f7f2ef;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
 }
 
-form input:focus,
-form textarea:focus {
-  outline: 2px solid var(--accent);
-  border-color: transparent;
-}
-
-form button {
-  background: var(--accent);
-  color: #fff;
+.qty-btn {
+  width: 28px;
+  height: 28px;
   border: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-form button:hover {
-  background: var(--accent-dark);
-}
-
-.clear-btn {
-  display: inline-block;
-  margin: 12px 8px 0;
-  padding: 12px 24px;
-  background: #fff;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-  border-radius: 30px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.clear-btn:hover {
+  border-radius: 50%;
   background: var(--primary);
   color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
 }
 
-.toast {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translate(-50%, 20px);
-  background: var(--primary);
-  color: #ffffff;
-  padding: 14px 24px;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  z-index: 2000;
+.qty-value {
+  min-width: 20px;
   text-align: center;
-  width: max-content;
-  max-width: 90%;
+  font-weight: 600;
+  color: var(--primary);
 }
 
-.toast.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, 0);
+@media (max-width: 480px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .qty-controls {
+    align-self: stretch;
+    justify-content: center;
+  }
 }

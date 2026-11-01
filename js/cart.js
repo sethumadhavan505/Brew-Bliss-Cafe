@@ -3,7 +3,13 @@ import { showToast } from './toast.js';
 export function getCart() {
   try {
     const cart = JSON.parse(localStorage.getItem('cart'));
-    return Array.isArray(cart) ? cart : [];
+    if (!Array.isArray(cart)) return [];
+
+    return cart.map((item) => ({
+      name: item?.name || 'Item',
+      price: Number(item?.price) || 0,
+      quantity: Math.max(1, Number(item?.quantity) || 1)
+    }));
   } catch (error) {
     return [];
   }
@@ -13,27 +19,64 @@ export function saveCart(cart) {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+export function getCartItemCount() {
+  return getCart().reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
+}
+
 export function updateCartBadge() {
   const cartCount = document.getElementById('cartCount');
   if (cartCount) {
-    cartCount.textContent = getCart().length;
+    cartCount.textContent = String(getCartItemCount());
   }
 }
 
 export function addToCart(item) {
   const cart = getCart();
-  cart.push({
-    name: item.name,
-    price: item.price
-  });
+  const existingItem = cart.find(
+    (entry) => entry.name.toLowerCase() === item.name.toLowerCase()
+  );
+
+  if (existingItem) {
+    existingItem.quantity = (Number(existingItem.quantity) || 1) + 1;
+  } else {
+    cart.push({
+      name: item.name,
+      price: Number(item.price) || 0,
+      quantity: 1
+    });
+  }
 
   saveCart(cart);
   updateCartBadge();
   showToast(`✓ ${item.name} added to your cart!`);
 }
 
+export function changeCartItemQuantity(name, delta) {
+  const cart = getCart();
+  const itemIndex = cart.findIndex(
+    (entry) => entry.name.toLowerCase() === name.toLowerCase()
+  );
+
+  if (itemIndex === -1) return;
+
+  cart[itemIndex].quantity = Math.max(0, (Number(cart[itemIndex].quantity) || 1) + delta);
+
+  if (cart[itemIndex].quantity === 0) {
+    cart.splice(itemIndex, 1);
+  }
+
+  saveCart(cart);
+  updateCartBadge();
+
+  const cartItemsDiv = document.getElementById('cartItems');
+  if (cartItemsDiv && typeof window.renderCart === 'function') {
+    window.renderCart();
+  }
+}
+
 export function clearCart() {
   saveCart([]);
+  updateCartBadge();
 
   const cartItems = document.getElementById('cartItems');
   const cartTotal = document.getElementById('cartTotal');

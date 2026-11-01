@@ -26,7 +26,11 @@ if (orderForm) {
       return;
     }
 
-    const total = cart.reduce((sum, item) => sum + (Number(item.price) || 0), 0);
+    const total = cart.reduce((sum, item) => {
+      const price = Number(item.price) || 0;
+      const quantity = Number(item.quantity) || 1;
+      return sum + (price * quantity);
+    }, 0);
 
     if (orderMessage) {
       orderMessage.textContent = `✅ Thank you, ${customerName}! Your order has been placed. Total: ₹${total}`;
