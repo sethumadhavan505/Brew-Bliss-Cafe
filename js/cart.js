@@ -51,6 +51,20 @@ export function addToCart(item) {
   showToast(`✓ ${item.name} added to your cart!`);
 }
 
+export function removeCartItem(name) {
+  const cart = getCart().filter(
+    (entry) => entry.name.toLowerCase() !== name.toLowerCase()
+  );
+
+  saveCart(cart);
+  updateCartBadge();
+
+  const cartItemsDiv = document.getElementById('cartItems');
+  if (cartItemsDiv && typeof window.renderCart === 'function') {
+    window.renderCart();
+  }
+}
+
 export function changeCartItemQuantity(name, delta) {
   const cart = getCart();
   const itemIndex = cart.findIndex(

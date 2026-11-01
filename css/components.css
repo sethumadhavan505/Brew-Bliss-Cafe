@@ -50,6 +50,23 @@
   color: var(--primary);
 }
 
+.cart-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.remove-btn {
+  background: transparent;
+  border: 1px solid #c94545;
+  color: #c94545;
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
 @media (max-width: 480px) {
   .cart-item {
     flex-direction: column;
@@ -59,5 +76,10 @@
   .qty-controls {
     align-self: stretch;
     justify-content: center;
+  }
+
+  .cart-item-actions {
+    width: 100%;
+    align-items: flex-start;
   }
 }

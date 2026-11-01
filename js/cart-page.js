@@ -1,4 +1,4 @@
-import { getCart, clearCart, proceedToCheckout, changeCartItemQuantity } from './cart.js';
+import { getCart, clearCart, proceedToCheckout, changeCartItemQuantity, removeCartItem } from './cart.js';
 
 function renderCart() {
   const cartItemsDiv = document.getElementById('cartItems');
@@ -34,7 +34,10 @@ function renderCart() {
               <button class="qty-btn" data-action="increase" data-name="${item.name}" type="button">+</button>
             </div>
 
-            <strong>₹${itemTotal}</strong>
+            <div class="cart-item-actions">
+              <strong>₹${itemTotal}</strong>
+              <button class="remove-btn" data-name="${item.name}" type="button">Remove</button>
+            </div>
           </div>
         `;
       })
@@ -49,6 +52,13 @@ function renderCart() {
         } else if (action === 'decrease') {
           changeCartItemQuantity(name, -1);
         }
+      });
+    });
+
+    const removeButtons = cartItemsDiv.querySelectorAll('.remove-btn');
+    removeButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        removeCartItem(button.dataset.name);
       });
     });
   }
