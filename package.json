@@ -1,0 +1,13 @@
+{
+  "name": "brew-bliss-cafe",
+  "version": "1.0.0",
+  "description": "Brew Bliss Café app with a lightweight backend for order submission.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

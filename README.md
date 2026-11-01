@@ -1,23 +1,41 @@
-# ☕ Brew Bliss Café
+# Brew Bliss Café
 
-A front-end café website built with HTML, CSS, and JavaScript.
+A modern, responsive café website showcasing coffee, snacks, and special drinks with a cart and checkout flow.
 
 ## Features
-- Coffee, snacks, and specials menu
-- Add-to-cart functionality
-- Cart total in Indian Rupees
-- Order form
-- Browser local storage for cart items
+
+- Home page with menu tabs
+- Add-to-cart and quantity controls
+- Cart summary with live totals
+- Order form with validation
+- Lightweight backend for saving orders
 
 ## Run locally
-Open `index.html` in your browser, or use the Live Server extension in Visual Studio Code.
 
-## Project files
-- `index.html` — Home page
-- `cart.html` — Shopping cart
-- `order.html` — Order form
-- `style.css` — Styling
-- `script.js` — Menu, cart, and order interactions
+1. Install dependencies:
 
-## Note
-This is a front-end demo. Orders are not sent to a backend and no online payment is processed.
+```bash
+npm install
+```
+
+2. Start the server:
+
+```bash
+npm start
+```
+
+3. Open the app in your browser:
+
+```text
+http://localhost:3000
+```
+
+## Backend
+
+The app now includes a small Express API at:
+
+- `GET /api/health`
+- `GET /api/orders`
+- `POST /api/orders`
+
+Orders are saved in `data/orders.json`.
