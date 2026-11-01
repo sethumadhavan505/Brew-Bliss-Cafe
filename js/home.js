@@ -1,0 +1,64 @@
+import { menuItems, fallbackImages } from './data.js';
+import { addToCart, updateCartBadge } from './cart.js';
+
+const menuGrid = document.getElementById('menuGrid');
+
+if (menuGrid) {
+  const tabs = document.querySelectorAll('.tab');
+
+  function loadMenu(category) {
+    menuGrid.innerHTML = '';
+
+    (menuItems[category] || []).forEach((item) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const img = document.createElement('img');
+      img.src = item.img;
+      img.alt = item.name;
+      img.loading = 'lazy';
+
+      img.onerror = function () {
+        if (this.dataset.fallbackApplied === 'true') {
+          this.alt = `${item.name} image unavailable`;
+          this.style.objectFit = 'contain';
+          this.removeAttribute('src');
+          return;
+        }
+
+        this.dataset.fallbackApplied = 'true';
+        this.src = fallbackImages[category] || fallbackImages.coffee;
+      };
+
+      const title = document.createElement('h3');
+      title.textContent = item.name;
+
+      const price = document.createElement('p');
+      price.className = 'price';
+      price.textContent = `₹${item.price}`;
+
+      const button = document.createElement('button');
+      button.className = 'order-btn';
+      button.type = 'button';
+      button.textContent = 'Add to Cart';
+
+      button.addEventListener('click', () => {
+        addToCart(item);
+      });
+
+      card.append(img, title, price, button);
+      menuGrid.appendChild(card);
+    });
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      document.querySelector('.tab.active')?.classList.remove('active');
+      tab.classList.add('active');
+      loadMenu(tab.dataset.category);
+    });
+  });
+
+  updateCartBadge();
+  loadMenu('coffee');
+}
