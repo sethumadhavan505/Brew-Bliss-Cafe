@@ -35,7 +35,6 @@ http://localhost:3000
 The app now includes a small Express API at:
 
 - `GET /api/health`
-- `GET /api/orders`
 - `POST /api/orders`
 
-Orders are saved in `data/orders.json`.
+Orders are saved in `data/orders.json`. Order totals are calculated by the server from its menu prices. Order records are not exposed through a public read endpoint because they contain customer details.
