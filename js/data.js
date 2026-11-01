@@ -37,7 +37,7 @@ export const menuItems = {
     {
       name: 'Mocha Delight',
       price: 180,
-      img: 'https://images.unsplash.com/photo-1579494941850-3d4e7f31e9f3?auto=format&fit=crop&w=900&q=80'
+      img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=900&q=80'
     }
   ]
 };
