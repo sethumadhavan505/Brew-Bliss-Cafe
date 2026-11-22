@@ -10,25 +10,7 @@ A modern, responsive café website showcasing coffee, snacks, and special drinks
 - Order form with validation
 - Lightweight backend for saving orders
 
-## Run locally
 
-1. Install dependencies:
-
-```bash
-npm install
-```
-
-2. Start the server:
-
-```bash
-npm start
-```
-
-3. Open the app in your browser:
-
-```text
-http://localhost:3000
-```
 
 ## Backend
 
